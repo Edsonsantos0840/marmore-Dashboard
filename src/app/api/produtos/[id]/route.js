@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "../../../../libs/prisma";
-import { create } from "domain";
+
 
 export async function GET(request, { params }) {
   const produto = await prisma.produto.findUnique({

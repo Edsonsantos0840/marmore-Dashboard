@@ -89,13 +89,13 @@ export default function ProdutoCard({ data }: any) {
           <div className="flex justify-center items-center gap-5 text-red-700 p-4 bg-[#fecaca82] rounded-md shadow-md w-3/4 m-auto">
             <FaRegEdit
               onClick={() =>
-                router.push("editarProdutos/" + data.id)
+                router.push("/editarProdutos/" + data.id)
               }
               className="cursor-pointer"
             />
             <BsFillSendFill
               onClick={() =>
-                router.push("verProduto/" + data.id)
+                router.push("/verProduto/" + data.id)
               }
               className="cursor-pointer"
             />
