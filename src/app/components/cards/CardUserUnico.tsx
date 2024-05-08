@@ -31,7 +31,7 @@ export default function UserCardUnico({ data }: any) {
 
        <p className="  text-[#6b6b6b] text-2xl ">{data.tipo}</p>     
 
-       <div className="flex justify-between  items-center gap-6 text-red-200 py-3 px-28 bg-[#941212] text-2xl rounded-md">
+       <div className="flex justify-between  items-center gap-6 text-red-100 py-3 px-28 bg-[#b11010] text-2xl rounded-md cursor-pointer hover:scale-105">
        
            <FaRegEdit className="cursor-pointer" onClick={() => router.push("editarUsers/" + data.id)} />
       
@@ -39,7 +39,7 @@ export default function UserCardUnico({ data }: any) {
         
          <FaTrash onClick={delUser} className="cursor-pointer" />
 
-         {data.status === "ativo" ? <FaRegCircle className="bg-green-400 rounded-full" />: <FaRegCircle className="bg-red-700 rounded-full" />}
+         {data.status === "ativo" ? <FaRegCircle className="bg-green-400 rounded-full border-none" />: <FaRegCircle className="bg-red-700 rounded-full border-none" />}
        </div>
         </div>
           {
