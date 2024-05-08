@@ -7,7 +7,7 @@ import Input from "../../../components/form/Input";
 import ConvertImage from "../../../components/ConvertImage";
 
 export default function EditarUsers({ params }: any) {
-  const url =  `http://localhost:3000//api/users/${params.id}`
+  const url =  `http://localhost:3000/api/users/${params.id}`
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [fone, setFone] = useState("");
@@ -47,7 +47,7 @@ export default function EditarUsers({ params }: any) {
    },[user] )
 
   return (
-    <div className='absolute top-0 left-[22%] w-9/12 m-auto p-2 ' >
+    <div className='absolute top-0 left-[19%] w-10/12 m-auto p-2 ' >
        <form
       onSubmit={handleSubmit}
       className="flex flex-col justify-center items-center w-3/4 p-8 shadow-lg rounded-md "

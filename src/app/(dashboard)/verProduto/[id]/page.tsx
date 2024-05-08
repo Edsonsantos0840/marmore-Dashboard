@@ -2,7 +2,6 @@
 import { useRouter } from "next/navigation";
 import { BsReplyAllFill } from "react-icons/bs";
 import UseHttp from '../../../hooks/UseHttp'
-import CardProdutoUnico from "../../../components/cards/CardProdutoUnico";
 import CardUnico from "../../../components/cards/CardUnico";
 
 export default function VerProduto({ params }: any) {

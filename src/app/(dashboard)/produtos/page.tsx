@@ -9,7 +9,7 @@ export default function Produtos() {
   const { product } = UseHttp(url);
 
   return (
-    <section className="absolute top-0 left-[20%]  w-10/12 m-auto pr-1 ">
+    <section className="absolute top-0 left-[19%]  w-10/12 m-auto pr-1 ">
       <TopoAdd />
       {product &&
         product.map((produto: any) => (

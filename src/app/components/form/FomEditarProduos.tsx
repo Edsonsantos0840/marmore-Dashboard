@@ -6,7 +6,7 @@ import UseHttp from "../../hooks/UseHttp";
 import ConvertImage from "../ConvertImage";
 
 export default function FormEditaProduto({ params }: any) {
-  const url = `http://localhost:3000//api/produtos/${params.id}`;
+  const url = `http://localhost:3000/api/produtos/${params.id}`;
   const [category, setCategory] = useState("");
   const [Title, setTitle] = useState("");
   const [description, setDescription] = useState("");

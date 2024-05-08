@@ -3,13 +3,13 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FaRegEdit, FaTrash } from "react-icons/fa";
 import { BsFillSendFill } from "react-icons/bs";
-import UseHttp from '../../hooks/UseHttp'
+import UseHttp from "../../hooks/UseHttp";
 
 export default function ProdutoCard({ data }: any) {
-  const url = `http://localhost:3000//api/produtos/${data.id}`
+  const url = `http://localhost:3000/api/produtos/${data.id}`;
   const router = useRouter();
 
-  const {del}: any = UseHttp(url)
+  const { del }: any = UseHttp(url);
 
   // async function del() {
   //   const res = await fetch(url, {
@@ -82,32 +82,29 @@ export default function ProdutoCard({ data }: any) {
             )}
           </div>
 
-          <p className="  text-[#6b6b6b] text-center p-5 text-lg">
-            {data.description}
-          </p>
-
-          <div className="flex justify-center items-center gap-5 text-red-700 p-4 bg-[#fecaca82] rounded-md shadow-md w-3/4 m-auto">
-            <FaRegEdit
-              onClick={() =>
-                router.push("/editarProdutos/" + data.id)
-              }
-              className="cursor-pointer"
-            />
-            <BsFillSendFill
-              onClick={() =>
-                router.push("/verProduto/" + data.id)
-              }
-              className="cursor-pointer"
-            />
-            <FaTrash onClick={del} className="cursor-pointer" />
+          <div className="flex justify-between items-center gap-5 text-red-700 p-4 bg-[#fecaca82] rounded-md shadow-md w-11/12 m-auto my-5">
+            <p className="text-[#00a1bac7] ">
+              {new Date(data.createdAt).toLocaleDateString()}
+            </p>
+            <div className="flex justify-between items-center w-1/4 " >
+              <FaRegEdit
+                onClick={() => router.push("/editarProdutos/" + data.id)}
+                className="cursor-pointer"
+              />
+              <BsFillSendFill
+                onClick={() => router.push("/verProduto/" + data.id)}
+                className="cursor-pointer"
+              />
+              <FaTrash onClick={del} className="cursor-pointer" />
+            </div>
+            <p className="text-[#00a1bac7] ">
+              {new Date(data.updatedAt).toLocaleDateString()}
+            </p>
           </div>
-          <p className="text-[#00a1bac7] ">
-            {new Date(data.createdAt).toLocaleDateString()}
-          </p>
-          <p className="text-[#00a1bac7] ">
-            {new Date(data.updatedAt).toLocaleDateString()}
-          </p>
         </div>
+        <p className="  text-[#6b6b6b] text-center p-5 text-lg w-11/12 bg-white rounded-md m-auto my-5">
+          {data.description}
+        </p>
       </div>
     </>
   );

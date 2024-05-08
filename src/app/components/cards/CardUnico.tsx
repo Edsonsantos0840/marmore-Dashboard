@@ -132,7 +132,7 @@ export default function CardUnico({ data, userId, productId }: any) {
               )}
             </div>
 
-            <p className="  text-[#6b6b6b] text-center p-5 text-lg">
+            <p className="  text-[#6b6b6b] text-center p-5 text-lg w-11/12 bg-white rounded-md m-auto my-5">
               {data.description}
             </p>
 

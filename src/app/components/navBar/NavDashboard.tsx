@@ -33,7 +33,7 @@ export default function NavDashboard() {
       </Link>
       <hr />
       <Link
-        href={"contato"}
+        href={"/contato"}
         className="hover:scale-110 hover:text-red-700 hover:bg-white p-1"
       >
         <div className=" flex gap-2   items-center ">
@@ -42,7 +42,7 @@ export default function NavDashboard() {
         </div>
       </Link>
       <Link
-        href={"cadastroProduto"}
+        href={"/cadastroProduto"}
         className="hover:scale-110 hover:text-red-700 hover:bg-white p-1"
       >
         <div className=" flex gap-2   items-center ">
@@ -51,7 +51,7 @@ export default function NavDashboard() {
         </div>
       </Link>
       <Link
-        href={"cadastroUsuario"}
+        href={"/cadastroUsuario"}
         className="hover:scale-110 hover:text-red-700 hover:bg-white p-1"
       >
         <div className=" flex gap-2   items-center ">
@@ -60,7 +60,7 @@ export default function NavDashboard() {
         </div>
       </Link>
       <Link
-        href={"produtos"}
+        href={"/produtos"}
         className="hover:scale-110 hover:text-red-700 hover:bg-white p-4"
       >
         <div className=" flex gap-2  items-center ">
@@ -69,7 +69,7 @@ export default function NavDashboard() {
         </div>
       </Link>
       <Link
-        href={"usuarios"}
+        href={"/usuarios"}
         className="hover:scale-110 hover:text-red-700 hover:bg-white p-4"
       >
         <div className=" flex gap-2   items-center ">
