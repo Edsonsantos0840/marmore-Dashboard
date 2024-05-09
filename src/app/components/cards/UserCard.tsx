@@ -7,12 +7,18 @@ import UseHttp from '../../hooks/UseHttp'
 export default function UserCard({ data }: any) {
   const url = `http://localhost:3000//api/users/${data.id}`
 
-  const { delUser} = UseHttp(url);
+  const { delUser, err, loading} = UseHttp(url);
  
   const router = useRouter()
   
   return (
     <>
+         {
+     loading && <h1>Carregando Dados........</h1>
+     }
+     {
+      err && <p>{err}</p>
+     }
       <div
         key={data.id}
         className=" bg-[#00000026]  rounded-sm shadow-lg mt-5 mb-5 "

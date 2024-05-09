@@ -4,12 +4,15 @@ import Input from "./Input";
 import UseConvert from "../../hooks/UseConvert";
 import UseHttp from "../../hooks/UseHttp";
 import ConvertImage from "../ConvertImage";
+import { useRouter } from "next/navigation";
 
 export default function FormProdutos(): React.JSX.Element {
   const url: string = "http://localhost:3000//api/produtos";
   const [category, setCategory] = useState<string>("");
   const [Title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+
+  const router = useRouter()
 
   const {
     image1,
@@ -21,7 +24,7 @@ export default function FormProdutos(): React.JSX.Element {
     convert644,
     convert645,
   } = UseConvert();
-  const { setProduct } = UseHttp(url);
+  const { setProduct, loading, err} = UseHttp(url);
 
   function handleSubmit(e: React.SyntheticEvent): void {
     e.preventDefault();
@@ -34,12 +37,9 @@ export default function FormProdutos(): React.JSX.Element {
       category,
       description,
     };
-    try {
       setProduct(produto);
-      // router.push("/page/dashboard/produtos");
-    } catch (error) {
-      alert(error);
-    }
+      alert('Produto cadastrado com sucesso')
+      router.push("/produtos");
   }
 
   return (
@@ -47,8 +47,12 @@ export default function FormProdutos(): React.JSX.Element {
       onSubmit={handleSubmit}
       className="flex flex-col items-center w-3/4  shadow-lg rounded-md p-10 "
     >
+      {
+        err && <p>{err}</p>
+      }
+
       <h1 className="text-3xl text-center font-bold ">
-        Cadastro de Usuário
+        Cadastro de Produtos
       </h1>
       <label className=" text-center  w-full ">
         Categoria:
@@ -92,8 +96,11 @@ export default function FormProdutos(): React.JSX.Element {
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value)}
         ></textarea>
       </label>
-
-      <Input type="submit" value="Enviar" />
+       {
+        loading ? 
+        <Input type="submit" value="Aguarde" disabled/> :
+        <Input type="submit" value="Enviar" />
+       }
     </form>
   );
 }

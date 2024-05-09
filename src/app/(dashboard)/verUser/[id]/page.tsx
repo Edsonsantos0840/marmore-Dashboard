@@ -7,10 +7,16 @@ import UserCardUnico from "../../../components/cards/CardUserUnico";
 export default function VerUsuario({ params }: any) {
 const url = `/api/users/${params.id}`
   const route = useRouter();
-  const {user: data}: any = UseHttp(url)
+  const {user: data, err, loading}: any = UseHttp(url)
 
   return (
     <section className="absolute top-0 left-[20%]  w-10/12 m-auto p-1 ">
+           {
+     loading && <h1>Carregando Dados........</h1>
+     }
+     {
+      err && <p>{err}</p>
+     }
       <div className="flex p-3 justify-around items-center">
         <h1>Usuário</h1>
         <div className="flex gap-3  items-center">

@@ -14,7 +14,7 @@ export default function EditarUsers({ params }: any) {
   const [tipo, setTipo] = useState("");
 
   const route = useRouter();
-  const {setUser, user} = UseHttp(url)
+  const {setUser, user, err, loading} = UseHttp(url)
   const {userImage, setUserImage, convertToBase64 } = UseConvert()
 
 
@@ -27,12 +27,9 @@ export default function EditarUsers({ params }: any) {
       tipo,
       userImage,
     };
-    try {
+   
       setUser(usuario)
-    } catch (error) {
-      alert(error);
-    }
-
+      alert('Usuário editado com sucesso')
     route.push("/usuarios");
   }
    useEffect(() => {
@@ -52,6 +49,9 @@ export default function EditarUsers({ params }: any) {
       onSubmit={handleSubmit}
       className="flex flex-col justify-center items-center w-3/4 p-8 shadow-lg rounded-md "
     >
+      {
+        err && <p>{err}</p>
+      }
       <h1 className="text-3xl text-center mb-8 font-bold ">
         Cadastro de Usuário
       </h1>
@@ -90,7 +90,12 @@ export default function EditarUsers({ params }: any) {
         </label>
       </div>
       <ConvertImage func={convertToBase64} img={userImage} />
-      <Input type="submit" value="Enviar" />
+  
+      {
+        loading ? 
+        <Input type="submit" value="Aguarde" disabled/> :
+        <Input type="submit" value="Enviar" />
+       }
     </form>
     </div>
   )

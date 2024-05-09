@@ -24,7 +24,7 @@ export default function EditarProdutos({params}: any) {
     convert645,
   } = UseConvert();
 
-  const { setProduct, product } = UseHttp(url);
+  const { setProduct, product, err, loading } = UseHttp(url);
 
  useEffect(() => {
   product &&
@@ -46,12 +46,9 @@ export default function EditarProdutos({params}: any) {
       category,
       description,
     };
-    try {
       setProduct(produto);
+      alert('Produto editado com sucesso')
       router.push("/produtos");
-    } catch (error) {
-      alert(error);
-    }
   }
 
   return (
@@ -60,6 +57,9 @@ export default function EditarProdutos({params}: any) {
       onSubmit={handleSubmit}
       className="flex flex-col items-center w-4/4  shadow-lg rounded-md p-10 "
     >
+      {
+        err && <p>{err}</p>
+      }
       <h1 className="text-3xl text-center font-bold ">
         Editar Usuário
       </h1>
@@ -107,7 +107,11 @@ export default function EditarProdutos({params}: any) {
         ></textarea>
       </label>
 
-      <Input type="submit" value="Enviar" />
+      {
+        loading ? 
+        <Input type="submit" value="Aguarde" disabled/> :
+        <Input type="submit" value="Enviar" />
+       }
     </form>
     </div>
   );

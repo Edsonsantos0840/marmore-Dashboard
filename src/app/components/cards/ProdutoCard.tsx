@@ -9,15 +9,25 @@ export default function ProdutoCard({ data }: any) {
   const url = `http://localhost:3000/api/produtos/${data.id}`;
   const router = useRouter();
 
-  const { delProduct }: any = UseHttp(url);
+  const { delProduct, err, loading }: any = UseHttp(url);
 
  function del(){
-  delProduct()
-  router.refresh()
+    const confirmar = confirm("Voce realmente quer deletar?")
+    if(confirmar){
+      delProduct()
+    }
+    alert('Produto deletado com sucesso')
+   router.push('/produtos')
  }
 
   return (
     <>
+     {
+     loading && <h1>Carregando Dados........</h1>
+     }
+     {
+      err && <p>{err}</p>
+     }
       <div
         key={data.id}
         className="max-w-sm:flex-col content-center p-3 gap-2  bg-[#00000026]  rounded-xl shadow-lg mt-5 mb-5 "

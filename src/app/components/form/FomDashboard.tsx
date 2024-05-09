@@ -4,6 +4,7 @@ import Input from "./Input";
 import UseConvert from "../../hooks/UseConvert";
 import UseHttp from "../../hooks/UseHttp";
 import ConvertImage from "../ConvertImage";
+import { useRouter } from "next/navigation";
 
 export default function FormUsuario() {
   const url: string = "http://localhost:3000/api/users";
@@ -15,8 +16,10 @@ export default function FormUsuario() {
   const [erro, setErro] = useState<boolean>(false);
   const [status, setStatus] = useState<string>("");
 
+  const router = useRouter()
+
   const { userImage, convertToBase64 } = UseConvert();
-  const { setUser }= UseHttp(url);
+  const { setUser, loading, err }= UseHttp(url);
 
   function handleSubmit(e: any): void {
     e.preventDefault();
@@ -30,6 +33,8 @@ export default function FormUsuario() {
       status,
     };
     setUser(user);
+    alert('Usuário cadastrado com sucesso')
+    router.push('/usuarios')
   }
 
   return (
@@ -37,6 +42,9 @@ export default function FormUsuario() {
       onSubmit={handleSubmit}
       className="flex flex-col justify-center items-center w-3/4 p-8 shadow-lg rounded-md "
     >
+      {
+        err && <p>{err}</p>
+      }
       <h1 className="text-3xl text-center mb-8 font-bold ">
         Cadastro de Usuário
       </h1>
@@ -94,7 +102,11 @@ export default function FormUsuario() {
         </label>
       </div>
       <ConvertImage func={convertToBase64} img={userImage} />
-      <Input type="submit" value="Enviar" />
+      {
+        loading ?
+        <Input type="submit" value="Aguarde" disabled/> :
+        <Input type="submit" value="Enviar" />
+      }
     </form>
   );
 }

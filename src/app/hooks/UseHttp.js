@@ -3,85 +3,148 @@ import { useState } from "react";
 
 export default function UseHttp(url) {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState(false);
   const [product, setProduct] = useState(null);
   const [delId, setDelId] = useState(null)
 
   useEffect(() => {
-    async function postaUser() {
-     await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(user),
-      });
+   setLoading(true)
+      async function postaUser() {
+        try {
+          const res = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(user),
+          });
+
+        } catch (error) {
+          setErr(error)
+          console.log(error)
+        }
     }
+   setLoading(false)
     postaUser();
   }, [user, url]);
   
   useEffect(() => {
-    async function editarUser() {
-     await fetch(url, {
+   setLoading(true)
+     
+   async function editarUser() {
+     try {
+      const res = await fetch(url, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(user),
+        body: JSON.stringify(user)
       });
-    }
+    
+     } catch (error) {
+      setErr(error)
+      console.log(error)
+     }
+   }
+   setLoading(false)
     editarUser();
   }, [user, url]);
 
   useEffect(() => {
+    setLoading(true)
     async function getUser() {
-      const res = await fetch(url);
-      const json = await res.json();
-      setUser(json);
+      try {
+        const res = await fetch(url);
+        const json = await res.json();
+        setUser(json);
+      } catch (error) {
+        setErr(error)
+        console.log(error)
+      }
     }
+    setLoading(false)
     getUser();
   }, [url]);
 
   async function delUser(){
-    await fetch(url, {
-      method: "DELETE"
-    });
+     setLoading(true)
+       try {
+          await fetch(url, {
+          method: "DELETE"
+        });
+       
+       } catch (error) {
+            setErr(error)
+            console.log(error)
+       }
+     setLoading(false)
   }
 
   useEffect(() => {
+    setLoading(true)
     async function postaProduct() {
-    await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(product),
-      });
-    }
+      try {
+        const res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(product)
+        });
+
+      } catch (error) {
+        setErr(error)
+        console.log(error)
+      }
+  }
+    setLoading(false)
     postaProduct();
   }, [product, url]);
 
   useEffect(() => {
+    setLoading(true)
     async function editaProduct() {
-      await fetch(url, {
-        method: "PUT",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(product),
-      });
-    }
+      try {
+        const res = await fetch(url, {
+          method: "PUT",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify(product)
+        });
+       
+      } catch (error) {
+        setErr(error)
+        console.log(error)
+      }
+
+  }
+    setLoading(false)
     editaProduct();
   }, [product, url]);
 
   useEffect(() => {
+    setLoading(true)
     async function getProduct() {
-      const res = await fetch(url);
-      const json = await res.json();
-      setProduct(json);
+      try {
+        const res = await fetch(url);
+        const json = await res.json();
+        setProduct(json);
+      } catch (error) {
+        setErr(error)
+        console.log(error)
+      }
     }
+    setLoading(false)
     getProduct();
   }, [url]);
 
   async function delProduct(){
-    const res = await fetch(url, {
-      method: "DELETE"
-    });
-    // const json = await res.json()
+    setLoading(true)
+      try {
+        const res = await fetch(url, {
+        method: "DELETE"
+        });
 
-    // setProduct(json)
+      } catch (error) {
+        setErr(error)
+        console.log(error)
+      }
+    setLoading(false)
   }
 
-  return { user, setUser, delId, setDelId, delUser, product, setProduct, delProduct};
+  return { user, setUser, delId, setDelId, delUser, product, setProduct, delProduct, loading, err};
 }

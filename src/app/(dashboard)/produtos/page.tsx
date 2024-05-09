@@ -6,11 +6,17 @@ import ProdutoCard from "../../components/cards/ProdutoCard";
 
 export default function Produtos() {
   const url = `http://localhost:3000/api/produtos `;
-  const { product } = UseHttp(url);
+  const { product, err, loading } = UseHttp(url);
 
   return (
     <section className="absolute top-0 left-[19%]  w-10/12 m-auto pr-1 ">
       <TopoAdd />
+      {
+     loading && <h1>Carregando Dados........</h1>
+     }
+     {
+      err && <p>{err}</p>
+     }
       {product &&
         product.map((produto: any) => (
           <div key={produto.id}>

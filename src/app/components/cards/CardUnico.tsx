@@ -66,7 +66,7 @@ export default function CardUnico({ data, userId, productId }: any) {
                 width={650}
                 height={550}
                 name="frame"
-                className=" m-auto rounded-md hover:scale-150 hover:absolute top-30 left-[19%] ease-in duration-300"
+                className=" m-auto rounded-md hover:scale-125 hover:mt-20 hover:ml-[20%]  left-[19%] ease-in duration-300"
               >
                 <h1>Seu navegador não é compaível com a tecnologia.</h1>
               </iframe>

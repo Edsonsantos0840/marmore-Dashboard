@@ -7,21 +7,17 @@ import CardUnico from "../../../components/cards/CardUnico";
 export default function VerProduto({ params }: any) {
   const url = `/api/produtos/${params.id}`
   const route = useRouter();
-  // const [data, setData] = useState([]);
 
-  const {product: data}: any = UseHttp(url)
-
-  // useEffect(() => {
-  //   async function produto() {
-  //     const res = await fetch(`/api/produtos/${params.id}`);
-  //     const json = await res.json();
-  //     setData(json);
-  //   }
-  //   produto();
-  // }, [route, params.id]);
+  const {product: data, err, loading}: any = UseHttp(url)
 
   return (
     <section className="absolute top-0 left-[18%]  w-10/12 m-auto p-1 ">
+           {
+     loading && <h1>Carregando Dados........</h1>
+     }
+     {
+      err && <p>{err}</p>
+     }
       <div className="flex p-3 justify-around items-center">
         <h1>Produto</h1>
         <div className="flex gap-3  items-center">
