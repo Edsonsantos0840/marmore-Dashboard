@@ -9,15 +9,12 @@ export default function ProdutoCard({ data }: any) {
   const url = `http://localhost:3000/api/produtos/${data.id}`;
   const router = useRouter();
 
-  const { del }: any = UseHttp(url);
+  const { delProduct }: any = UseHttp(url);
 
-  // async function del() {
-  //   const res = await fetch(url, {
-  //     method: "DELETE",
-  //   });
-  //   router.push("/page/dashboard/produtos");
-  //   router.refresh();
-  // }
+ function del(){
+  delProduct()
+  router.refresh()
+ }
 
   return (
     <>
@@ -95,8 +92,10 @@ export default function ProdutoCard({ data }: any) {
                 onClick={() => router.push("/verProduto/" + data.id)}
                 className="cursor-pointer"
               />
+
               <FaTrash onClick={del} className="cursor-pointer" />
             </div>
+
             <p className="text-[#00a1bac7] ">
               {new Date(data.updatedAt).toLocaleDateString()}
             </p>

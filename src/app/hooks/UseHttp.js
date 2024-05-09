@@ -73,5 +73,15 @@ export default function UseHttp(url) {
     }
     getProduct();
   }, [url]);
-  return { user, setUser, delId, setDelId, delUser, product, setProduct};
+
+  async function delProduct(){
+    const res = await fetch(url, {
+      method: "DELETE"
+    });
+    // const json = await res.json()
+
+    // setProduct(json)
+  }
+
+  return { user, setUser, delId, setDelId, delUser, product, setProduct, delProduct};
 }
