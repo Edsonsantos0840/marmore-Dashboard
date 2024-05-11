@@ -24,6 +24,7 @@ export default function FormProdutos(): React.JSX.Element {
     convert644,
     convert645,
   } = UseConvert();
+  
   const { setProduct, loading, err} = UseHttp(url);
 
   function handleSubmit(e: React.SyntheticEvent): void {
@@ -99,7 +100,7 @@ export default function FormProdutos(): React.JSX.Element {
        {
         loading ? 
         <Input type="submit" value="Aguarde" disabled/> :
-        <Input type="submit" value="Enviar" />
+         <button>Enviar</button>
        }
     </form>
   );

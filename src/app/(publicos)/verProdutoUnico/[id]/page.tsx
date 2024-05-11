@@ -1,34 +1,17 @@
-"use client";
-import CardUnico from "../../../components/cards/CardUnico";
-import { useRouter } from "next/navigation";
-import { BsReplyAllFill } from "react-icons/bs";
-import UseHttp from "../../../hooks/UseHttp";
 
-export default function VerProdutoUnico({ params }: any) {
-  const url = `/api/produtos/${params.id}`;
-  const route = useRouter();
+import {getServerSession } from "next-auth";
+import { nextAuthOptions } from "../../../api/auth/[...nextauth]/route";
+import Image from "next/image";
+import FormComment from "../../../components/form/FormComment";
 
-  const { product: data, err, loading } = UseHttp(url);
+export default async function Início({params}: any) {
+  const session: any = await getServerSession<any>(nextAuthOptions);
+
+  const id = params.id
 
   return (
-    <section className="pt-16">
-      <div className="flex p-3 justify-between items-center">
-        {loading && <h1>Carregando Dados........</h1>}
-        {err && <p>{err}</p>}
-        {data && (
-          <>
-            <h1>{data.category}</h1>
-            <div className="flex gap-3  items-center">
-              <BsReplyAllFill
-                onClick={() => route.push(`/${data.category}`)}
-                className="text-3xl cursor-pointer"
-              />
-              <h2>Voltar </h2>
-            </div>
-          </>
-        )}
-      </div>
-      {data && <CardUnico data={data} />}
-    </section>
+    <div className="pt-16">
+      <FormComment dat={id} userId={session?.user.id} nome={session?.user.name} imagem={session?.user.image}/>
+    </div>
   );
 }

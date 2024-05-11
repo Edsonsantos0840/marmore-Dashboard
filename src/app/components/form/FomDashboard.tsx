@@ -1,5 +1,5 @@
 "use client";
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { useState } from "react";
 import Input from "./Input";
 import UseConvert from "../../hooks/UseConvert";
 import UseHttp from "../../hooks/UseHttp";
@@ -13,13 +13,12 @@ export default function FormUsuario() {
   const [password, setPassword] = useState<string>("");
   const [fone, setFone] = useState<string>("");
   const [tipo, setTipo] = useState<string>("");
-  const [erro, setErro] = useState<boolean>(false);
   const [status, setStatus] = useState<string>("");
 
   const router = useRouter()
 
   const { userImage, convertToBase64 } = UseConvert();
-  const { setUser, loading, err }= UseHttp(url);
+  const { setUser, loading, err } = UseHttp(url);
 
   function handleSubmit(e: any): void {
     e.preventDefault();
@@ -105,7 +104,7 @@ export default function FormUsuario() {
       {
         loading ?
         <Input type="submit" value="Aguarde" disabled/> :
-        <Input type="submit" value="Enviar" />
+        <button>Enviar</button>
       }
     </form>
   );

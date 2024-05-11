@@ -13,8 +13,8 @@ export default function CardProdutoUnico({ data }: any) {
       {
         data &&
         <Image
-        src={data.image1 && data.image1}
-        alt={data.title && data.title}
+        src={data.image1}
+        alt={data.title}
         width={220}
         height={120}
         className="rounded-md shadow-lg border-2 border-[#00000047] cursor-pointer"

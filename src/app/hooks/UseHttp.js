@@ -7,6 +7,7 @@ export default function UseHttp(url) {
   const [err, setErr] = useState(false);
   const [product, setProduct] = useState(null);
   const [delId, setDelId] = useState(null)
+  const [comment, setComment] = useState(null)
 
   useEffect(() => {
    setLoading(true)
@@ -17,7 +18,7 @@ export default function UseHttp(url) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(user),
           });
-
+          
         } catch (error) {
           setErr(error)
           console.log(error)
@@ -138,7 +139,7 @@ export default function UseHttp(url) {
         const res = await fetch(url, {
         method: "DELETE"
         });
-
+        alert('Produto deletado com sucesso')
       } catch (error) {
         setErr(error)
         console.log(error)
@@ -146,5 +147,24 @@ export default function UseHttp(url) {
     setLoading(false)
   }
 
-  return { user, setUser, delId, setDelId, delUser, product, setProduct, delProduct, loading, err};
+  useEffect(() => {
+    setLoading(true)
+       async function postacomment() {
+         try {
+           const res = await fetch(url, {
+             method: "POST",
+             headers: { "Content-Type": "application/json" },
+             body: JSON.stringify(comment),
+           });
+           
+         } catch (error) {
+           setErr(error)
+           console.log(error)
+         }
+     }
+    setLoading(false)
+    postacomment();
+   }, [comment, url]);
+
+  return { user, setUser, delId, setDelId, delUser, product, setProduct, delProduct, setComment, comment,  loading, err};
 }

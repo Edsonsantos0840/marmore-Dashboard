@@ -11,6 +11,8 @@ export default function ProdutoCard({ data }: any) {
 
   const { delProduct, err, loading }: any = UseHttp(url);
 
+  
+
  function del(){
     const confirmar = confirm("Voce realmente quer deletar?")
     if(confirmar){

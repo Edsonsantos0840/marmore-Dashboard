@@ -1,9 +1,25 @@
-import { getServerSession } from "next-auth"
-import { nextAuthOptions } from "../../api/auth/[...nextauth]/route"
+
+import {getServerSession } from "next-auth";
+import { nextAuthOptions } from "../../api/auth/[...nextauth]/route";
+import Image from "next/image";
 
 export default async function Início() {
-   const session = await getServerSession(nextAuthOptions )
+  const session: any = await getServerSession(nextAuthOptions);
+
   return (
-    <div>Olá     {session?.user.name}     com o número de identificação : {session?.user.id}  email  : {session?.user.email}      tipo :    {session?.user.tipo}      seja bem vindo!</div>
-  )
+    <div className="pt-16">
+      Olá {session?.user.name}{" "}
+      <Image
+        src={session?.user.image}
+        alt="img"
+        width={40}
+        height={40}
+        className="rounded-full"
+      />
+      <p>
+        Com o ID: {session?.user.id} <br />{" "}
+      </p>{" "}
+      email : {session?.user.email} <br /> seja bem vindo!
+    </div>
+  );
 }

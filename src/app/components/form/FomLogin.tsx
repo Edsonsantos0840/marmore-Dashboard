@@ -3,7 +3,7 @@ import { SyntheticEvent } from "react";
 import React, { useState } from "react";
 import Input from "./Input";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
 export default function FormLogin({ props }: any) {
@@ -48,7 +48,11 @@ export default function FormLogin({ props }: any) {
         value={password}
         Change={(e: any) => setPassword(e.target.value)}
       />
-      <Input type="submit" value="Enviar" />
+      <Input type="submit" value="Login" />
+
+      <p>Login com Google</p>
+      <button className="bg-zinc-400 p-2 rounded-md text-white w-full" onClick={() => signIn('google') } >Login com Google</button>
+
       <p className="text-xs" >Não Possui Cadastro?</p>
       <Link href={"/cadastro"}  className="text-xl" >Cadastre-se Já.</Link>
     </form>

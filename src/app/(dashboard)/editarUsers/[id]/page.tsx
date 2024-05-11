@@ -94,7 +94,7 @@ export default function EditarUsers({ params }: any) {
       {
         loading ? 
         <Input type="submit" value="Aguarde" disabled/> :
-        <Input type="submit" value="Enviar" />
+        <button>Enviar</button>
        }
     </form>
     </div>
