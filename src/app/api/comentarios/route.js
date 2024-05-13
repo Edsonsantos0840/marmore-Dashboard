@@ -2,13 +2,29 @@ import { NextResponse } from "next/server";
 import { prisma } from "../../../libs/prisma";
 
 export async function GET() {
-  const comment = await prisma.comments.findMany();
+  const comment = await prisma.comments.findMany(
+    {
+    select: {
+      comment: true,
+      id: true,
+      produtoId: true,
+     User: {
+      select: {
+       id: true,
+       name: true,
+       userImage: true,
+      }
+     }
+    }
+  }
+);
 
   return NextResponse.json(comment);
 }
+
 export async function POST(request) {
   try {
-    const { comment, produtoId, userId } = await request.json();
+    const { comment, produtoId, userId} = await request.json();
 
     if (isNaN(produtoId)) {
       return new Response("O ID do produto não é válido", { status: 400 });
@@ -25,14 +41,10 @@ export async function POST(request) {
             id: Number(produtoId),
           },
         },
-        UserComments: {
-           create: {
-            User: {
-              connect: {
-                id: Number(userId)
-              }
-            }
-           }
+        User: {
+          connect: {
+            id: Number(userId)
+          },
         },
       },
     });

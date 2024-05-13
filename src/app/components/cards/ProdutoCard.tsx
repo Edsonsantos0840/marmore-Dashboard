@@ -101,7 +101,7 @@ export default function ProdutoCard({ data }: any) {
                 className="cursor-pointer"
               />
               <BsFillSendFill
-                onClick={() => router.push("/verProduto/" + data.id)}
+                onClick={() => router.push("/verProdutoUnico/" + data.id)}
                 className="cursor-pointer"
               />
 

@@ -6,7 +6,6 @@ export default function UseHttp(url) {
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState(false);
   const [product, setProduct] = useState(null);
-  const [delId, setDelId] = useState(null)
   const [comment, setComment] = useState(null)
 
   useEffect(() => {
@@ -156,7 +155,7 @@ export default function UseHttp(url) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(comment)
         });
-
+        
       } catch (error) {
         setErr(error)
         console.log(error)
