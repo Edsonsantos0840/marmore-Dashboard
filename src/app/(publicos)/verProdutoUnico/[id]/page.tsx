@@ -10,8 +10,8 @@ export default async function Início({params}: any) {
   const id = params.id
 
   return (
-    <div className="pt-16">
-      <FormComment dat={id} userId={session?.user.id} nome={session?.user.name} imagem={session?.user.image}/>
+    <div >
+      <FormComment dat={id} userId={session?.user.id} />
     </div>
   );
 }

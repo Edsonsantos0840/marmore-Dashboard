@@ -123,7 +123,7 @@ export default function UseHttp(url) {
       try {
         const res = await fetch(url);
         const json = await res.json();
-        setProduct(json);
+        setComment(json);
       } catch (error) {
         setErr(error)
         console.log(error)
@@ -149,22 +149,38 @@ export default function UseHttp(url) {
 
   useEffect(() => {
     setLoading(true)
-       async function postacomment() {
-         try {
-           const res = await fetch(url, {
-             method: "POST",
-             headers: { "Content-Type": "application/json" },
-             body: JSON.stringify(comment),
-           });
-           
-         } catch (error) {
-           setErr(error)
-           console.log(error)
-         }
-     }
-    setLoading(false)
-    postacomment();
-   }, [comment, url]);
+    async function postaComment() {
+      try {
+        const res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(comment)
+        });
 
-  return { user, setUser, delId, setDelId, delUser, product, setProduct, delProduct, setComment, comment,  loading, err};
+      } catch (error) {
+        setErr(error)
+        console.log(error)
+      }
+  }
+    setLoading(false)
+    postaComment();
+  }, [comment, url]);
+
+   useEffect(() => {
+    setLoading(true)
+    async function getComment() {
+      try {
+        const res = await fetch(url);
+        const json = await res.json();
+        setProduct(json);
+      } catch (error) {
+        setErr(error)
+        console.log(error)
+      }
+    }
+    setLoading(false)
+    getComment();
+  }, [url]);
+
+  return { user, setUser, delUser, product, setProduct, delProduct, setComment, comment,  loading, err};
 }

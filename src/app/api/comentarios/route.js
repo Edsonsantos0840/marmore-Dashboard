@@ -26,9 +26,13 @@ export async function POST(request) {
           },
         },
         UserComments: {
-          connect: {
-             userId: Number(userId)
-          }
+           create: {
+            User: {
+              connect: {
+                id: Number(userId)
+              }
+            }
+           }
         },
       },
     });

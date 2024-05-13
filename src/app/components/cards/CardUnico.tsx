@@ -15,14 +15,14 @@ export default function CardUnico({ data}: any) {
             {data.Title}
           </h2>
           <div >
-            <div className="overflow-hidden" >
+            <div  >
               <iframe 
                 scrolling="no" 
                 src={data.image1}
                 width={610}
                 height={510}
                 name="frame"
-                className=" m-auto rounded-md hover:scale-110 hover:mt-10 hover:ml-[6%]  left-[19%] ease-in overflow-hidden duration-300"
+                className=" m-auto rounded-md hover:scale-110 hover:mt-10  left-[19%] ease-in overflow-hidden duration-300"
               >
                 <h1>Seu navegador não é compaível com a tecnologia.</h1>
               </iframe>
