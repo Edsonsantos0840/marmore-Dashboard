@@ -1,13 +1,12 @@
 "use client";
-import React, {useEffect, useState } from "react";
+import React, { useState } from "react";
 import UseHttp from "../../hooks/UseHttp";
 import { useRouter } from "next/navigation";
 import Input from "./Input";
-import Image from "next/image";
 import CardProdutoCliente from "../cards/CardProdutoCliente";
+import CardComment from "../cards/CardComment";
 
 export default function FormComment(props: any) {
-  const [id, setId] = useState(null)
   const urlp = `/api/produtos/${props.dat}`;
   const url: string = "/api/comentarios";
   const [comentario, setComentario] = useState<string>("");
@@ -15,18 +14,7 @@ export default function FormComment(props: any) {
   const router = useRouter();
 
   const { product: data } = UseHttp(urlp);
-  const { setComment, comment, loading, err } = UseHttp(url);
-
-  // useEffect(() => {
-  //   if(props.userId.length > 3){
-  //     let num = [...props.userId]
-  //     setId(`${num[0]}${num[1]}${num[2]}`)
-  //   }
-  // },[props.userId] )
-  // console.log(id)
-  // console.log(props.dat)
-  // console.log(comment)
-  // console.log(comment)
+  const { setComment, loading, err } = UseHttp(url);
 
   function handleSubmit(e: any): void {
     e.preventDefault();
@@ -35,8 +23,9 @@ export default function FormComment(props: any) {
       produtoId: Number(props.dat),
       userId: Number(props.userId),
     };
+
     setComment(comenta);
-    // router.push(`/verProdutoUnico/${props.dat}`);
+    router.refresh()
   }
   return (
     <div>
@@ -60,31 +49,12 @@ export default function FormComment(props: any) {
           {loading ? (
             <Input type="submit" value="Aguarde" disabled />
           ) : (
-            <button className=" bg-red-700 text-white p-2">Enviar</button>
+            <Input className='w-[10%]' type="submit" value="Commentar"  />
           )}
         </div>
-        {
-          comment &&
-          comment.map((e: any) => (
-            <div
-              key={e.id}
-              className=" w-full m-auto mt-4 py-2 px-8  font-semibold bg-slate-100 rounded-md shadow-lg "
-            >
-              <div className="flex gap-5 p-2">
-              <Image
-                className="rounded-full"
-                src={e.User?.userImage}
-                alt={e.User?.name}
-                width={40}
-                height={40}
-              />
-              <h4>{e.User?.name}</h4>
-              </div>
-              <p>{e.comment}</p>
-            </div>
-          ))}
+   
       </form>
-     
+      <CardComment/>
     </div>
   );
 }

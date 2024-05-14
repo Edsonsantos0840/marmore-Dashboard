@@ -1,7 +1,6 @@
 
 import {getServerSession } from "next-auth";
 import { nextAuthOptions } from "../../../api/auth/[...nextauth]/route";
-import Image from "next/image";
 import FormComment from "../../../components/form/FormComment";
 
 export default async function Início({params}: any) {
