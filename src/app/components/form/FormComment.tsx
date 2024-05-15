@@ -31,7 +31,7 @@ export default function FormComment(props: any) {
   return (
     <div>
       <CardProdutoCliente loading={loading} err={err} data={data} />
-      <div className=" m-auto text-center" >
+      <div className=" flex gap-2 m-auto justify-center items-center" >
       <FormLike  dat={props.dat} userId={props.userId}/>
       </div>
       <form

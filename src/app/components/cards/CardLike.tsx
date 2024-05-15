@@ -12,8 +12,8 @@ export default function CardLike() {
   return (
     <div>
       {like &&
-          <div className=" m-auto  font-semibold ">
-            <p>{like.length }</p>
+          <div className=" font-bold bg-[var(--corPrincipal)]  text-xl px-3 py-1 rounded-full shadow-md ">
+            <p className="text-white">{like.length }</p>
           </div>
        }
     </div>
