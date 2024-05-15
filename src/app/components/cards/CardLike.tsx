@@ -6,17 +6,16 @@ export default function CardLike() {
 
   const { like } = UseHttp(url);
 
-    console.log(like?.like)
+    // console.log(like.length)
 
 
   return (
     <div>
       {like &&
-        like.map((e: any) => (
-          <div key={e.id} className=" m-auto  font-semibold ">
-            <p>{e.length}</p>
+          <div className=" m-auto  font-semibold ">
+            <p>{like.length }</p>
           </div>
-        ))}
+       }
     </div>
-  );
+  )
 }

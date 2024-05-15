@@ -2,7 +2,11 @@ import { NextResponse } from "next/server";
 import { prisma } from "../../../libs/prisma";
 
 export async function GET() {
-  const like = await prisma.likes.findMany();
+  const like = await prisma.likes.findMany({
+    select: {
+      like: true
+    }
+  });
 
   return NextResponse.json(like);
 }

@@ -26,7 +26,7 @@ export default function FormLike(props: any) {
   
   return (
     <>
-      <button onClick={handleSubmit} ><AiOutlineLike className="text-3xl m-auto" /></button>
+      <button onClick={handleSubmit} ><AiOutlineLike className="text-3xl" /></button>
       <CardLike/>
     </>
   );

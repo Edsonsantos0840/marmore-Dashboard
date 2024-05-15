@@ -210,7 +210,7 @@ export default function UseHttp(url) {
       try {
         const res = await fetch(url);
         const json = await res.json();
-        setProduct(json);
+        setLike(json);
       } catch (error) {
         setErr(error)
         console.log(error)
