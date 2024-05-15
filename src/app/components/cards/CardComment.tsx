@@ -4,6 +4,7 @@ import UseHttp from "../../hooks/UseHttp";
 export default function CardComment() {
     const url: string = "/api/comentarios";
     const {  comment} = UseHttp(url);
+
   return (
     <>
       {comment &&
@@ -15,12 +16,12 @@ export default function CardComment() {
             <div className="flex gap-5 p-2">
               <Image
                 className="rounded-full"
-                src={e.UserComments[0]?.User.userImage}
-                alt={e.UserComments[0]?.User.name}
+                src={e.UserComments?.User[0]?.userImage}
+                alt={e.UserComments?.User[0]?.name}
                 width={40}
                 height={40}
               />
-              <h4>{e.UserComments[0]?.User.name}</h4>
+              <h4>{e.UserComments?.User[0]?.name}</h4>
             </div>
             <p>{e.comment}</p>
           </div>

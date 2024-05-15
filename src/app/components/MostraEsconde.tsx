@@ -30,12 +30,6 @@ export default function MostraEsconde() {
         onMouseLeave={fechar}
       >
         <Link
-          href={"/escadas"}
-          className="hover:scale-110 hover:border-b-2 border-white drop-shadow-md	"
-        >
-          Escadas
-        </Link>
-        <Link
           href={"/banheiros"}
           className="hover:scale-110 hover:border-b-2 border-white drop-shadow-md	"
         >
@@ -46,6 +40,12 @@ export default function MostraEsconde() {
           className="hover:scale-110 hover:border-b-2 border-white drop-shadow-md	"
         >
           Cozinhas
+        </Link>
+        <Link
+          href={"/escadas"}
+          className="hover:scale-110 hover:border-b-2 border-white drop-shadow-md	"
+        >
+          Escadas
         </Link>
         <Link
           href={"/exteriores"}

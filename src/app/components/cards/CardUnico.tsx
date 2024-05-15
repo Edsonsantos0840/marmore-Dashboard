@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-
 export default function CardUnico({ data}: any) {
   return (
     <>
@@ -98,14 +97,8 @@ export default function CardUnico({ data}: any) {
               <p className="text-[#00a1bac7] ">
                 {new Date(data.createdAt).toLocaleDateString()}
               </p>
-              <div className="text-lg text-[#026f80c7]">
-                {/* <CountLike />
-              <div className="text-md bg-[#00a1bac7] rounded-full p-3 shadow-lg text-white">
-                {likes.map((e: any) => (
-                  <li key={e.id}>{e.like.length}</li>
-                ))}
-                {like && like.length}
-              </div> */}
+              <div className="text-2xl text-[#026f80c7]">
+
               </div>
               <p className="text-[#00a1bac7] ">
                 {new Date(data.updatedAt).toLocaleDateString()}

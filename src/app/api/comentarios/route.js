@@ -7,15 +7,6 @@ export async function GET() {
      select: {
       id: true,
       comment: true,
-      ProdutoComments: {
-        select: {
-          Produto: {
-            select: {
-              id: true,
-            }
-          }
-        }
-      },
       UserComments: {
         select: {
           User: {

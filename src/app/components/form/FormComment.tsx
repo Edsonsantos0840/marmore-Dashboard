@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Input from "./Input";
 import CardProdutoCliente from "../cards/CardProdutoCliente";
 import CardComment from "../cards/CardComment";
+import FormLike from "./FormLike";
 
 export default function FormComment(props: any) {
   const urlp = `/api/produtos/${props.dat}`;
@@ -30,13 +31,13 @@ export default function FormComment(props: any) {
   return (
     <div>
       <CardProdutoCliente loading={loading} err={err} data={data} />
-
+      <FormLike dat={props.dat} userId={props.userId}/>
       <form
         onSubmit={handleSubmit}
         className="flex flex-col w-full p-4 shadow-lg rounded-md "
       >
         {err && <p>{err}</p>}
-        <div className="flex w-full justify-center items-end">
+        <div className="flex w-full justify-center items-end gap-1">
           <label className="w-[90%]">
             Comentário:
             <textarea
@@ -49,10 +50,9 @@ export default function FormComment(props: any) {
           {loading ? (
             <Input type="submit" value="Aguarde" disabled />
           ) : (
-            <Input className='w-[10%]' type="submit" value="Commentar"  />
+            <button className='w-[10%] bg-[var(--corPrincipal)] text-white py-2 px-3' type="submit" >Comentar</button>
           )}
         </div>
-   
       </form>
       <CardComment/>
     </div>

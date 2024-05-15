@@ -75,8 +75,6 @@ model Likes {
   like      Int
   produto   Produto  @relation(fields: [produtoId], references: [id])
   produtoId Int      @unique
-  // author    User     @relation(fields: [authorId], references: [id])
-  // authorId  Int
   createAt  DateTime @default(now())
   updateAt  DateTime @updatedAt
   User      User?    @relation(fields: [userId], references: [id])
